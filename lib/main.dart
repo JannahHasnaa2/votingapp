@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'splash_screen.dart';
 import 'signup_screen.dart';
 import 'login_screen.dart';
-import 'profile_screen.dart';
+import 'profile_screen.dart';  // Ensure ProfileScreen is imported only from here
 
 void main() {
   runApp(VoteWiseApp());
@@ -36,7 +36,7 @@ class VoteWiseApp extends StatelessWidget {
       },
       routes: {
         '/signup': (context) => SignUpScreen(),
-        '/login': (context) => LoginScreen(),
+        '/login': (context) => LoginScreen(),  // Ensure LoginScreen is defined
       },
     );
   }
