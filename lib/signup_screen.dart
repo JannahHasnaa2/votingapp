@@ -11,9 +11,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
+  String _errorMessage = '';
 
   void _saveData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Check if user already exists
+    String? existingUsername = prefs.getString('name');
+    if (existingUsername != null) {
+      setState(() {
+        _errorMessage = 'User already exists. Please log in.';
+      });
+      return;
+    }
+
     await prefs.setString('name', _usernameController.text);
     await prefs.setString('email', _emailController.text);
     await prefs.setString('phone', _phoneController.text);
@@ -47,7 +58,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               width: 100,
               height: 100,
             ),
-
             SizedBox(height: 20),
             Text('Welcome!', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             SizedBox(height: 10),
@@ -71,12 +81,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
               obscureText: true,
             ),
             SizedBox(height: 20),
+            if (_errorMessage.isNotEmpty)
+              Text(
+                _errorMessage,
+                style: TextStyle(color: Colors.red),
+              ),
+            SizedBox(height: 20),
             ElevatedButton(
               onPressed: _saveData,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF00C853), // Green color from the image
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(30),
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
               ),
