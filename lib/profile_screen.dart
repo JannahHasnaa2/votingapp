@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String name;
@@ -79,7 +78,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 // Handle logout functionality
                 Navigator.pushNamed(context, '/login');
               },
-              child: Text('Log Out'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                textStyle: TextStyle(fontSize: 16, color: Colors.white),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              child: Text(
+                'Log Out',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),
