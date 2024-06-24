@@ -42,7 +42,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset('assets/logo.png', width: 100, height: 100),
+            Image.network(
+              'https://cdn-icons-png.flaticon.com/512/927/927295.png',
+              width: 100,
+              height: 100,
+            ),
+
             SizedBox(height: 20),
             Text('Welcome!', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             SizedBox(height: 10),
@@ -68,7 +73,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: _saveData,
-              child: Text('Sign Up'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFF00C853), // Green color from the image
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+              ),
+              child: Text(
+                'Sign Up',
+                style: TextStyle(fontSize: 16, color: Colors.white), // White text color
+              ),
             ),
             TextButton(
               onPressed: () {
@@ -82,6 +97,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
+
 
 
 
