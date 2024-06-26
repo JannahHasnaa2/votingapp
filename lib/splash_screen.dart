@@ -8,7 +8,12 @@ class SplashScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset('assets/logo.png', width: 100, height: 100),
+            Image.network(
+              'https://cdn-icons-png.flaticon.com/512/927/927295.png',
+              width: 100,
+              height: 100,
+            ),
+
             SizedBox(height: 20),
             Text('VoteWise', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             SizedBox(height: 20),
