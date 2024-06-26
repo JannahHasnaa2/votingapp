@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,20 +17,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void _saveData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    // Check if user already exists
+    // Check if the username already exists
     String? existingUsername = prefs.getString('name');
-    if (existingUsername != null) {
+    if (existingUsername == _usernameController.text) {
       setState(() {
-        _errorMessage = 'User already exists. Please log in.';
+        _errorMessage = 'Username already exists. Please choose a different one.';
       });
       return;
     }
 
+    // Save user data
     await prefs.setString('name', _usernameController.text);
     await prefs.setString('email', _emailController.text);
     await prefs.setString('phone', _phoneController.text);
     await prefs.setString('password', _passwordController.text);
 
+    // Navigate to profile page
     Navigator.pushReplacementNamed(
       context,
       '/profile',
@@ -113,7 +116,5 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
-
-
 
 
